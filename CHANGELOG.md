@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.7.0
+
+**Release Date:** 2024-05-23
+
+- Updated folder and file naming style to CI4 standards.
+- `Config/Markdown.php`
+  - Updated to [CI4 standards](https://codeigniter.com/user_guide/installation/upgrade_configuration.html#id3).
+- `Libraries/Markdown.php`
+  - Updated to [CI4 standards](https://codeigniter.com/user_guide/installation/upgrade_4xx.html#id10)
+  - Removed `parse()` and `parse_file()` as they were being deprecated.
+  - Updated variables to more self-explanatory.
+  - Renamed `initialize()` to `load_settings()`
+  - Log a critical message is the library cannot load `Config/Markdown.php`.
+  - Updated `load_settings()` setting loading code.
+- `README.md`
+  - Updated  to match CI4
+  - Added links for more quickly navigate to syntax guides.
+
+
 ## 1.6.0
 
 **Release Date:** 2021-07-19

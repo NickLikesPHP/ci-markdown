@@ -7,77 +7,84 @@ and [PHP Markdown Extra][2] for [CodeIgniter][3].
 
 ### Requirements
 
-- [PHP][4] version 5.4.8 or newer
-- [CodeIgniter][3] version 2.x – v3.x
+- [PHP][4] version 8.1 or newer
+- [CodeIgniter][3] version 4.5.x
 
 ### Download
 
-Download and extract the [zip][5] release to your CoddeIgniter
-`application/libraries/` directory.
+Download and extract the [ZIP][5] release to your CodeIgniter
+`app` directory.
 
-**The extracted path should resemble:**
+**The extracted paths should resemble:**
 
-- `application/libraries/Markdown.php`
+- `app/Libraries/Markdown.php`
+- `app/Config/Markdown.php`
 
 ## Usage
 
 ### Configuration
 
 Custom [PHP Markdown settings](https://michelf.ca/projects/php-markdown/configuration/)
-are defined in the [config/markdown.php](config/markdown.php) config file.
+are defined in the [Config/Markdown.php](Config/Markdown.php) config file.
 
 ### Initializing the Markdown Class
 
 Like most other classes in CodeIgniter, initialize it from your controller
-using the `$this->load->library()` method:
+using the `Factories::libraries();` method:
 
 ```php
-$this->load->library('markdown');
+Factories::libraries('Markdown');
 ```
 
 To programmatically configure the Markdown instance, overriding any matched
-settings defined in the [config file](config/markdown.php):
+settings defined in the [config file](Config/Markdown.php):
 
 ```php
 $config = array(
     'tab_width' => 2,
-    'no_markup' => true,
+    'no_markup' => true
     'empty_element_suffix' => '/>'
 );
 
-$this->load->library('markdown', $config);
+$markdown = Factories::libraries('Markdown', [], $config);
 ```
 
 #### Markdown to HTML
 
-- `$this->markdown->transform()`
+- `$markdown->transform()`
 
 Accepts a single `string` parameter of Markdown *text* and returns the
 transformed HTML.
 
 ```php
-$this->load->library('markdown');
+$markdown = Factories::libraries('Markdown');
 
 $markdownText = "# Heading "."\n"."## Sub-heading";
-echo $this->markdown->transform($markdownText);
+echo $markdown->transform($markdownText);
 // <h1>Heading</h1>
 // <h2>Sub-heading</h2>
 ```
 
 #### Markdown file to HTML
 
-- `$this->markdown->transform_file()`
+- `$markdown->transform_file()`
 
 Accepts a single `string` parameter for a Markdown *file path* and returns the
 transformed HTML.
 
 ```php
-$this->load->library('markdown');
+$markdown = Factories::libraries('Markdown');
 
-echo $this->markdown->transform_file('/path/to/markdown/file.md');
+echo $markdown->transform_file('/path/to/markdown/file.md');
 // <h1>Heading</h1>
 // <h2>Sub-heading</h2>
 ```
+
+### Syntax Guides and Markdown Converter
+
+- [John Gruber's PHP Markdown Syntax Guide](https://daringfireball.net/projects/markdown/syntax)
+- [John Gruber's PHP Markdown Converter](https://daringfireball.net/projects/markdown/dingus)
+- [Michel Fortin's PHP Markdown Extra Syntax Guide](https://daringfireball.net/projects/markdown/syntax)
 
 ## Issues
 
